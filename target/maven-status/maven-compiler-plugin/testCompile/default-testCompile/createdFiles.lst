@@ -1,0 +1,16 @@
+br/com/exercise/apam/dataprovider/TransactionPartyDataProvider.class
+br/com/exercise/apam/controller/ChildCostCalculatorTest.class
+br/com/exercise/apam/model/InstitutionTest.class
+br/com/exercise/apam/dataprovider/AccountDataProvider.class
+br/com/exercise/apam/dataprovider/TransactionDataProvider.class
+br/com/exercise/apam/dataprovider/PersonDataProvider.class
+br/com/exercise/apam/model/AccountTest.class
+br/com/exercise/apam/model/TransactionTest.class
+br/com/exercise/apam/helpers/CamelCaseGenerator.class
+br/com/exercise/apam/dataprovider/InstitutionDataProvider.class
+br/com/exercise/apam/model/PersonTest.class
+br/com/exercise/apam/helpers/CamelCaseDisplayNameGenerator.class
+br/com/exercise/apam/dataprovider/CommonsProvider.class
+br/com/exercise/apam/model/TransactionSubjectTest.class
+br/com/exercise/apam/controller/AccountControllerTest.class
+br/com/exercise/apam/controller/ApamAdminTest.class
