@@ -21,15 +21,23 @@ public class Account {
      * 1. Id, Number and Type should not be null
      * 2. Transaction List should be an empty list
      *
-     * @param id     Id of the Account
+     * @param id Id of the Account
      * @param number Number of the account
-     * @param type   AccountType of the account
+     * @param type AccountType of the account
+     *
      * @throws NullPointerException if id or number are null
      */
     public Account(String id, String number, AccountType type) {
-        if (id == null || number == null || type == null) {
-            throw new NullPointerException("id, number or type must not be null");
+        if (id == null) {
+            throw new NullPointerException("id must not be null");
         }
+        if (number == null ) {
+            throw new NullPointerException("number must not be null");
+        }
+        if (type == null) {
+            throw new NullPointerException("type must not be null");
+        }
+
         this.id = id;
         this.number = number;
         this.type = type;
@@ -43,7 +51,6 @@ public class Account {
      */
     public String getId() {
         return id;
-
     }
 
     /**
@@ -53,7 +60,6 @@ public class Account {
      */
     public String getNumber() {
         return number;
-
     }
 
     /**
@@ -63,7 +69,6 @@ public class Account {
      */
     public AccountType getType() {
         return type;
-
     }
 
     /**
@@ -73,7 +78,6 @@ public class Account {
      */
     public List<Transaction> getTransactions() {
         return transactions;
-
     }
 
     /**
@@ -81,16 +85,15 @@ public class Account {
      *
      * @return BigDecimal representing the Balance of the Account.
      */
-    public BigDecimal getAccountBalance() {
-        BigDecimal accounzzzzzzzzztBalance = BigDecimal.ZERO;
-        if (transactions != null) {
+    public BigDecimal getBalance() {
+        BigDecimal Balance = BigDecimal.ZERO;
+        if (transactions != null ) {
             for (Transaction transaction : transactions) {
-                accountBalance = aacounttBalance.add(transaction.getAmount());
+                Balance = Balance.add(transaction.getAmount());
             }
         }
-        return accountBalance;
+        return Balance;
     }
-
 
     /**
      * Add a new Transaction to the Account following these rules:
@@ -100,37 +103,38 @@ public class Account {
      * 4. Duplicated transactions should be ignored
      *
      * @param transaction Transaction to be added
+     *
      * @throws IllegalArgumentException if any of the rules above are violated
-     * @throws NullPointerException     if transaction is null.
+     * @throws NullPointerException if transaction is null.
      */
     public void addTransaction(final Transaction transaction) {
         if (transaction == null) {
-            throw new NullPointerException("Transaction cannot be null");
+            throw new NullPointerException(" transaction must not be null");
         }
-
         if (transactions.contains(transaction)) {
             return;
         }
 
-        Set<TransactionType> allowedTransactionSubjects = new HashSet<>();
+        Set<TransactionType> allowedTransactions = new HashSet<>();
         switch (type) {
             case CITY_HALL_ACCOUNT:
-                allowedTransactionSubjects.add(TransactionType.CHILD_PAYMENT);
-                allowedTransactionSubjects.add(TransactionType.PAYMENT);
+                allowedTransactions.add(TransactionType.CHILD_PAYMENT);
+                allowedTransactions.add(TransactionType.PAYMENT);
                 break;
             case CHILD_ACCOUNT:
-                allowedTransactionSubjects.add(TransactionType.CHILD_SALARY);
-                allowedTransactionSubjects.add(TransactionType.PAYMENT);
+                allowedTransactions.add(TransactionType.CHILD_SALARY);
+                allowedTransactions.add(TransactionType.PAYMENT);
                 break;
             case DONATION_ACCOUNT:
-                allowedTransactionSubjects.add(TransactionType.DONATION);
-                allowedTransactionSubjects.add(TransactionType.PAYMENT);
+                allowedTransactions.add(TransactionType.DONATION);
+                allowedTransactions.add(TransactionType.PAYMENT);
                 break;
         }
-        if (!allowedTransactionSubjects.contains(transaction.getSubject())){
-            throw new IllegalArgumentException("Invalid Transaction for Account");
+        if (!allowedTransactions.contains(transaction.getSubject())) {
+            throw new IllegalArgumentException("This transaction is invalid, it has already been added");
         }
 
-        transactions.add(transaction);
+        transaction.add(transaction);
+
     }
 }
